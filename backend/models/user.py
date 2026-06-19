@@ -1,3 +1,4 @@
+from pydantic import EmailStr, BaseModel
 from sqlalchemy import Column, String
 from sqlalchemy.dialects.postgresql import UUID
 import uuid
@@ -16,3 +17,7 @@ class User(Base):
     email = Column(String, unique=True) # Store email, must be unique
     password_hash = Column(String)    # Store password
     role = Column(String)             # Store user role
+
+class UserLogin(BaseModel):
+    email: EmailStr
+    password: str
