@@ -5,6 +5,7 @@ from sqlalchemy.orm import Session
 from config.database import get_db
 
 from models.transaction import Transaction
+from models.alert import Alert
 
 from schemas.transaction import TransactionCreate
 
@@ -35,6 +36,15 @@ def create_transaction(
     db.add(new_transaction)
     db.commit()
     db.refresh(new_transaction)
+    if alert:
+        new_alert = Alert(
+            user_id=current_user.id,
+            transaction_id=new_transaction.id,
+            severity=alert["severity"],
+            message=alert["message"]
+        )
+        db.add(new_alert)
+        db.commit()
 
     return {
         "message": "Transaction created",

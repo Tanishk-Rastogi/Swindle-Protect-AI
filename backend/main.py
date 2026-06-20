@@ -7,6 +7,8 @@ from models.alert import Alert
 
 from routers.auth import router as auth_router
 from routers.transaction import router as transaction_router
+from routers.alerts import router as alert_router
+from routers.analytics import router as analytics_router
 
 
 app = FastAPI(title="Swindle Protect AI")
@@ -24,6 +26,19 @@ app.include_router(
     prefix="/transactions",
     tags=["Transactions"]
 )
+
+app.include_router(
+    alert_router,
+    prefix="/alerts",
+    tags=["Alerts"]
+)
+
+app.include_router(
+    analytics_router,
+    prefix="/analytics",
+    tags=["Analytics"]
+)
+
 @app.get("/")
 def home():
     return {
