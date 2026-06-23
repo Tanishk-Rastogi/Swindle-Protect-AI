@@ -4,6 +4,7 @@ from config.database import Base, engine
 
 from models.user import User
 from models.alert import Alert
+from models.transaction import Transaction
 
 from routers.auth import router as auth_router
 from routers.transaction import router as transaction_router

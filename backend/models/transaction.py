@@ -1,5 +1,6 @@
 from sqlalchemy import (
     Column,
+    Float,
     ForeignKey,
     Numeric,
     String,
@@ -34,4 +35,13 @@ class Transaction(Base):
     merchant = Column(String(255))
     timestamp = Column(DateTime,default=datetime.utcnow)
     risk_score = Column(Integer,default=0)
+    ml_probability = Column(Float, nullable=False, default=0)
     is_fraud = Column(Boolean,default=False)
+    day_of_week = Column(Integer)
+    hour = Column(Integer)
+    merchant_category = Column(String)
+    is_new_device = Column(Boolean)
+    distance_from_home_km = Column(Float)
+    is_international = Column(Boolean)
+    txn_velocity_1h = Column(Integer)
+    account_age_days = Column(Integer)
