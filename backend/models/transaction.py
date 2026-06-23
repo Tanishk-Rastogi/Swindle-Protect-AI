@@ -34,6 +34,7 @@ class Transaction(Base):
     amount = Column(Numeric(10, 2))
     merchant = Column(String(255))
     timestamp = Column(DateTime,default=datetime.utcnow)
+    rule_score = Column(Integer, nullable=False, default=0)
     risk_score = Column(Integer,default=0)
     ml_probability = Column(Float, nullable=False, default=0)
     is_fraud = Column(Boolean,default=False)

@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 
 from config.database import Base, engine
-
+from config.constants import (API_VERSION, PROJECT_NAME)
 from models.user import User
 from models.alert import Alert
 from models.transaction import Transaction
@@ -12,7 +12,22 @@ from routers.alerts import router as alert_router
 from routers.analytics import router as analytics_router
 
 
-app = FastAPI(title="Swindle Protect AI")
+
+
+app = FastAPI(title=PROJECT_NAME,
+    version=API_VERSION,
+    description="""
+    Portfolio-grade AI fraud detection platform.
+    Features:
+    - JWT Authentication
+    - Rule-based fraud detection
+    - Machine Learning fraud prediction
+    - Risk scoring engine
+    - Alert generation
+    - Analytics dashboard support
+    - PostgreSQL persistence
+    """
+)
 
 Base.metadata.create_all(bind=engine) # Create database tables
 
@@ -44,4 +59,12 @@ app.include_router(
 def home():
     return {
         "message": "Backend running"
+    }
+
+@app.get("/health")
+def health_check():
+
+    return {
+        "status": "healthy",
+        "service": "Swindle-Protect AI"
     }

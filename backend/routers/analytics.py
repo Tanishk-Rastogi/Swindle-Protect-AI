@@ -22,13 +22,48 @@ def get_analytics(
         .filter(Transaction.user_id == current_user.id)
         .all()
     )
-
+    latest_transaction = (max(transactions, key=lambda t: t.timestamp)
+        if transactions
+        else None
+    )
     total_transactions = len(transactions)
     total_amount = sum(t.amount for t in transactions)
     fraud_count = sum(1 for t in transactions if t.is_fraud)
+    fraud_rate = (
+        (fraud_count / total_transactions) * 100
+        if total_transactions
+        else 0
+    )
+    average_risk_score = (
+        sum(t.risk_score for t in transactions) / total_transactions
+        if total_transactions
+        else 0
+    )
 
+    average_ml_confidence = (
+        sum(t.ml_probability for t in transactions) / total_transactions
+        if total_transactions
+        else 0
+    )
     return {
         "total_transactions": total_transactions,
         "total_amount": float(total_amount),
-        "fraud_count": fraud_count
+        "fraud_count": fraud_count,
+        "average_risk_score": round(
+            average_risk_score,
+            2
+        ),
+        "average_ml_confidence": round(
+            average_ml_confidence * 100,
+            2
+        ),
+        "fraud_rate": round(
+            fraud_rate,
+            2
+        ),
+        "latest_transaction": (
+            latest_transaction.timestamp
+            if latest_transaction
+            else None
+        ),
     }
