@@ -1,4 +1,5 @@
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 
 from config.database import Base, engine
 from config.constants import (API_VERSION, PROJECT_NAME)
@@ -29,6 +30,7 @@ app = FastAPI(title=PROJECT_NAME,
     """
 )
 
+
 Base.metadata.create_all(bind=engine) # Create database tables
 
 app.include_router(
@@ -53,6 +55,14 @@ app.include_router(
     analytics_router,
     prefix="/analytics",
     tags=["Analytics"]
+)
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["http://localhost:5173"],  # Adjust this to your frontend's URL
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
 )
 
 @app.get("/")

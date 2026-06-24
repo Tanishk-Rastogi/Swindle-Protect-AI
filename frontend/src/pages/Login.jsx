@@ -1,5 +1,5 @@
 import { useState } from "react";
-
+import { useNavigate } from "react-router-dom";
 import { loginUser } from "../services/authService";
 
 function Login() {
@@ -7,6 +7,8 @@ function Login() {
     username: "",
     password: "",
   });
+
+  const navigate = useNavigate();
 
   const [loading, setLoading] =
     useState(false);
@@ -36,7 +38,12 @@ function Login() {
 
       console.log(data);
 
-      alert("Login successful");
+      localStorage.setItem(
+        "token",
+        data.access_token
+      );
+
+      navigate("/dashboard");
 
     } catch (err) {
 

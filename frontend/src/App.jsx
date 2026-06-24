@@ -9,6 +9,8 @@ import Register from "./pages/Register";
 import Dashboard from "./pages/Dashboard";
 import Transactions from "./pages/Transactions";
 import Alerts from "./pages/Alerts";
+import ProtectedRoute from "./components/ProtectedRoute";
+import Analytics from "./pages/Analytics";
 
 function App() {
   return (
@@ -28,21 +30,48 @@ function App() {
 
         <Route
           path="/dashboard"
-          element={<Dashboard />}
+          element={
+            <ProtectedRoute>
+              <Dashboard />
+            </ProtectedRoute>
+          }
         />
 
         <Route
           path="/transactions"
-          element={<Transactions />}
+
+          element={
+            <ProtectedRoute>
+
+              <Transactions />
+
+            </ProtectedRoute>
+          }
         />
 
         <Route
           path="/alerts"
-          element={<Alerts />}
+
+          element={
+            <ProtectedRoute>
+
+              <Alerts />
+
+            </ProtectedRoute>
+          }
         />
+        <Route
+          path="/analytics"
 
+          element={
+            <ProtectedRoute>
+
+              <Analytics />
+
+            </ProtectedRoute>
+          }
+        />
       </Routes>
-
     </BrowserRouter>
   );
 }
