@@ -34,3 +34,19 @@ export const getTransactions = async () => {
 
   }
 };
+
+export const createTransaction = async (data) => {
+  const token = localStorage.getItem("token");
+
+  const response = await api.post(
+    "/transactions",
+    data,
+    {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    }
+  );
+
+  return response.data;
+};
