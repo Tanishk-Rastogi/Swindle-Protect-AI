@@ -59,7 +59,11 @@ app.include_router(
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:5173"],  # Adjust this to your frontend's URL
+    allow_origins=[
+        "http://localhost:5173",
+        "https://swindle-protect-ai.vercel.app",
+        "https://swindle-protect-lk6jwskwf-tanishks-projects-44d951bb.vercel.app",
+    ],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
