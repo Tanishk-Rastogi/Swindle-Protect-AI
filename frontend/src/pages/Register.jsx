@@ -35,6 +35,13 @@ export default function Register() {
         "Registration failed"
       );
     }
+    <button
+      type="submit"
+      onClick={() => console.log("BUTTON CLICKED")}
+      className="w-full bg-blue-600 text-white p-3 rounded"
+    >
+      Register
+    </button>
   };
 
   return (
