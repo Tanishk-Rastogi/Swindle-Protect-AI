@@ -65,7 +65,7 @@ app.add_middleware(
         "https://swindle-protect-lk6jwskwf-tanishks-projects-44d951bb.vercel.app",
         "https://swindle-protect-gysfdoso7-tanishks-projects-44d951bb.vercel.app",
     ],
-    allow_credentials=True,
+    allow_credentials=False,
     allow_methods=["*"],
     allow_headers=["*"],
 )
