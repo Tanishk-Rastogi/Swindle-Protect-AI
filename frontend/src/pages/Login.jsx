@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { loginUser } from "../services/authService";
+import { Link } from "react-router-dom";
+
 
 function Login() {
   const [form, setForm] = useState({
@@ -115,11 +117,28 @@ function Login() {
             ? "Logging in..."
             : "Login"}
         </button>
+        <button
+          type="submit"
+          disabled={loading}
+          className="w-full bg-blue-600 text-white p-3 rounded"
+        >
+          {loading ? "Logging in..." : "Login"}
+        </button>
 
+        <p className="text-center mt-4">
+          Don't have an account?{" "}
+          <Link
+            to="/register"
+            className="text-blue-600 hover:underline"
+          >
+            Register
+          </Link>
+        </p>
       </form>
 
     </div>
   );
 }
+
 
 export default Login;

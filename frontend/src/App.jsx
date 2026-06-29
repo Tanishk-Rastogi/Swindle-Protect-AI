@@ -11,6 +11,9 @@ import Transactions from "./pages/Transactions";
 import Alerts from "./pages/Alerts";
 import ProtectedRoute from "./components/ProtectedRoute";
 import Analytics from "./pages/Analytics";
+import Register from "./pages/Register";
+
+
 
 function App() {
   return (
@@ -23,10 +26,7 @@ function App() {
           element={<Login />}
         />
 
-        <Route
-          path="/register"
-          element={<Register />}
-        />
+        <Route path="/register" element={<Register />} />
 
         <Route
           path="/dashboard"
