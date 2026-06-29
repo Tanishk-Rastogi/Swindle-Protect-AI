@@ -63,6 +63,7 @@ app.add_middleware(
         "http://localhost:5173",
         "https://swindle-protect-ai.vercel.app",
         "https://swindle-protect-lk6jwskwf-tanishks-projects-44d951bb.vercel.app",
+        "https://swindle-protect-gysfdoso7-tanishks-projects-44d951bb.vercel.app",
     ],
     allow_credentials=True,
     allow_methods=["*"],
