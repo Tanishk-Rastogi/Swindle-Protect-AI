@@ -22,26 +22,17 @@ export default function Register() {
     e.preventDefault();
 
     try {
-      const res = await api.post("/auth/register", form);
+      await api.post("/auth/register", form);
 
-      console.log(res.data);
       alert("Registration successful!");
 
       navigate("/");
     } catch (err) {
-      console.error(err);
       alert(
         err?.response?.data?.detail ||
         "Registration failed"
       );
     }
-    <button
-      type="submit"
-      onClick={() => console.log("BUTTON CLICKED")}
-      className="w-full bg-blue-600 text-white p-3 rounded"
-    >
-      Register
-    </button>
   };
 
   return (

@@ -38,8 +38,6 @@ function Login() {
       const data =
         await loginUser(form);
 
-      console.log(data);
-
       localStorage.setItem(
         "token",
         data.access_token

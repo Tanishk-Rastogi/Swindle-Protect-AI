@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 
 import MainLayout from "../layouts/MainLayout";
+import ErrorMessage from "../components/ErrorMessage";
+import Loading from "../components/Loading";
 
 import { getAnalytics } from "../services/analyticsService";
 
@@ -25,6 +27,8 @@ function Analytics() {
 
   const [analytics, setAnalytics] =
     useState(null);
+  const [error, setError] =
+    useState("");
 
   useEffect(() => {
 
@@ -40,7 +44,10 @@ function Analytics() {
 
         } catch (err) {
 
-          console.log(err);
+          setError(
+            err.detail ||
+            "Failed to load analytics"
+          );
 
         }
 
@@ -50,12 +57,26 @@ function Analytics() {
 
   }, []);
 
+  if (error) {
+
+    return (
+      <MainLayout>
+
+        <ErrorMessage
+          message={error}
+        />
+
+      </MainLayout>
+    );
+
+  }
+
   if (!analytics) {
 
     return (
       <MainLayout>
 
-        Loading...
+        <Loading />
 
       </MainLayout>
     );

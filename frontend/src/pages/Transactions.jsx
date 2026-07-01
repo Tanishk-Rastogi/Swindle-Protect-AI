@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import ErrorMessage from "../components/ErrorMessage";
 import Loading from "../components/Loading";
 import MainLayout from "../layouts/MainLayout";
 import { getTransactions, createTransaction} from "../services/transactionService";
@@ -20,6 +21,7 @@ function Transactions() {
     account_age_days: "",
   });
   const [loading, setLoading] =useState(true);
+  const [error, setError] = useState("");
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
 
@@ -33,15 +35,12 @@ function Transactions() {
   };
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setError("");
 
     try {
       const result = await createTransaction(formData);
 
       setAnalysisResult(result);
-
-      console.log(result);
-
-      console.log(result);
 
       setShowForm(false);
 
@@ -51,7 +50,10 @@ function Transactions() {
       setTransactions(updatedTransactions);
 
     } catch (err) {
-      console.error(err);
+      setError(
+        err.detail ||
+        "Failed to create transaction"
+      );
     }
   };
 
@@ -64,7 +66,10 @@ function Transactions() {
           setTransactions(data);
         } 
         catch (err) {
-          console.log(err);
+          setError(
+            err.detail ||
+            "Failed to load transactions"
+          );
         }
         setLoading(false);
       };
@@ -89,9 +94,14 @@ function Transactions() {
           onClick={() => setShowForm(true)}
           className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
         >
-          Add Transaction
+        Add Transaction
         </button>
       </div>
+      {error && (
+        <ErrorMessage
+          message={error}
+        />
+      )}
       {analysisResult && (
         <div className="border rounded p-4 mb-6 bg-green-50">
           <h2 className="text-xl font-bold mb-3">

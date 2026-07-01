@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 
 import MainLayout from "../layouts/MainLayout";
+import ErrorMessage from "../components/ErrorMessage";
 
 import { getAlerts } from "../services/alertService";
 
@@ -8,6 +9,8 @@ function Alerts() {
 
   const [alerts, setAlerts] =
     useState([]);
+  const [error, setError] =
+    useState("");
 
   useEffect(() => {
 
@@ -23,7 +26,10 @@ function Alerts() {
 
         } catch (err) {
 
-          console.log(err);
+          setError(
+            err.detail ||
+            "Failed to load alerts"
+          );
 
         }
 
@@ -42,6 +48,12 @@ function Alerts() {
         Alerts
 
       </h1>
+
+      {error && (
+        <ErrorMessage
+          message={error}
+        />
+      )}
 
       <div className="overflow-x-auto">
 

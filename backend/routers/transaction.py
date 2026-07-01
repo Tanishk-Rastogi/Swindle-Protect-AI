@@ -44,6 +44,8 @@ def create_transaction(
         is_international=transaction.is_international,
         txn_velocity_1h=transaction.txn_velocity_1h,
         account_age_days=transaction.account_age_days,
+        rule_score=rule_score,
+        ml_probability=ml_result["probability"],
         risk_score=fraud["risk_score"],
         is_fraud=fraud["is_fraud"]
     )
