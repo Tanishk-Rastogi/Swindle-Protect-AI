@@ -1,109 +1,139 @@
 # Swindle-Protect AI
 
-AI-powered fintech fraud detection platform.
+An AI-powered fintech fraud detection platform that combines rule-based analysis and machine learning to identify potentially fraudulent transactions, generate alerts, and provide risk analytics.
+
+## Overview
+
+Swindle-Protect AI is a full-stack fraud detection system designed to simulate how modern fintech platforms assess transaction risk. The platform evaluates transactions using a hybrid approach that combines business rules with a machine learning model to produce a final risk score and trigger fraud alerts.
 
 ## Features
 
-- JWT Authentication
-- Rule-based Fraud Detection
-- Random Forest ML Fraud Prediction
-- Dynamic Risk Scoring
-- Alert Generation
-- Analytics
-- PostgreSQL Persistence
+* JWT-based Authentication & Authorization
+* User Registration and Login
+* Rule-Based Fraud Detection Engine
+* Machine Learning Fraud Prediction (Random Forest)
+* Dynamic Risk Scoring System
+* Fraud Alert Generation
+* Transaction Monitoring
+* Analytics Dashboard Support
+* PostgreSQL Database Integration
+* RESTful API Architecture
 
 ## Tech Stack
 
-Backend:
-- FastAPI
-- SQLAlchemy
-- PostgreSQL
+### Backend
 
-Machine Learning:
-- Random Forest
-- joblib
+* FastAPI
+* SQLAlchemy
+* PostgreSQL
+* JWT Authentication
+* Pydantic
 
-Frontend (Upcoming):
-- React
-- Tailwind CSS
-- Recharts
+### Machine Learning
+
+* Scikit-learn
+* Random Forest Classifier
+* Joblib
+
+### Frontend
+
+* React
+* Vite
+* Tailwind CSS
+* Recharts
+* Axios
+
+### Deployment
+
+* Render (Backend)
+* Vercel (Frontend)
+
+## System Architecture
+
+Transaction Request
+
+→ Rule-Based Fraud Engine
+
+→ Machine Learning Prediction
+
+→ Risk Scoring Engine
+
+→ Alert Generation
+
+→ PostgreSQL Storage
+
+→ Analytics Dashboard
 
 ## API Endpoints
 
-Authentication
+### Authentication
 
-POST /auth/register
+* POST `/auth/register`
+* POST `/auth/login`
+* GET `/auth/me`
 
-POST /auth/login
+### Transactions
 
-GET /auth/me
+* POST `/transactions`
+* GET `/transactions`
 
-Transactions
+### Alerts
 
-POST /transactions
+* GET `/alerts`
 
-GET /transactions
+### Analytics
 
-Alerts
+* GET `/analytics`
 
-GET /alerts
+### System
 
-Analytics
-
-GET /analytics
-
-System
-
-GET /
-
-GET /health
-
-## Fraud Detection Pipeline
-
-Transaction
-
-↓
-
-Rule Engine
-
-↓
-
-ML Prediction
-
-↓
-
-Risk Engine
-
-↓
-
-Alert Engine
-
-↓
-
-PostgreSQL
-
-↓
-
-Analytics
+* GET `/`
+* GET `/health`
 
 ## Project Structure
 
+```text
 backend/
+│
+├── config/
+├── models/
+├── routers/
+├── schemas/
+├── services/
+├── utils/
+├── ml/
+└── main.py
 
-app/
+frontend/
+│
+├── src/
+│   ├── pages/
+│   ├── services/
+│   ├── components/
+│   └── layouts/
+└── public/
+```
 
-config/
+## Key Learning Outcomes
 
-models/
+* Designing REST APIs using FastAPI
+* Implementing JWT Authentication
+* Integrating Machine Learning into production APIs
+* Working with PostgreSQL and SQLAlchemy ORM
+* Deploying full-stack applications using Render and Vercel
+* Debugging real-world deployment and database issues
+* Building analytics-driven applications
 
-routers/
+## Future Improvements
 
-schemas/
+* Advanced fraud detection models
+* Transaction history filtering
+* Email and SMS alert integration
+* Role-based access control
+* Docker containerization
+* Automated testing pipeline
 
-services/
+## Author
 
-utils/
-
-ml/
-
-main.py
+Tanishk Rastogi
+B.Tech CSE (AI & ML)
