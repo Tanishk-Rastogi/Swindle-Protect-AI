@@ -3,15 +3,13 @@ from sqlalchemy import create_engine      # Connect Python to the database
 from sqlalchemy.orm import declarative_base  # Blueprint for database tables
 from sqlalchemy.orm import sessionmaker      # Tool to talk to the database
 
-from dotenv import load_dotenv            # Load .env file variables
-
 import os                                 # Access environment variables
-
+from dotenv import load_dotenv
 
 load_dotenv()                             # Load .env file
 
 DATABASE_URL = os.getenv("DATABASE_URL")  # Get database address
-
+print("DATABASE_URL =", DATABASE_URL)
 engine = create_engine(DATABASE_URL)      # Create DB connection
 
 SessionLocal = sessionmaker(              # Create DB session tool
