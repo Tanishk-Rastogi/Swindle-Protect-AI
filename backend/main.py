@@ -30,6 +30,13 @@ app = FastAPI(title=PROJECT_NAME,
     """
 )
 
+app.add_middleware(
+    CORSMiddleware,
+    allow_origin_regex=r"https://.*\.vercel\.app",
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 Base.metadata.create_all(bind=engine) # Create database tables
 
@@ -57,13 +64,7 @@ app.include_router(
     tags=["Analytics"]
 )
 
-app.add_middleware(
-    CORSMiddleware,
-    allow_origin_regex=r"https://.*\.vercel\.app",
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
-)
+
 
 @app.get("/")
 def home():
